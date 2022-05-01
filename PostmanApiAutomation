@@ -1,0 +1,624 @@
+{
+	"info": {
+		"_postman_id": "d74d5d12-1405-4d8b-9d54-fc13b49668d5",
+		"name": "Live project",
+		"description": "This is for End to end Api testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TC-001_ADD new student",
+			"item": [
+				{
+					"name": "ADD_New_student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code put validation \", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"response body contain \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"update  data success\");\r",
+									"});\r",
+									"pm.test(\"validate Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"pm.test(\"validating status header Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"date\");\r",
+									"});\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([205, 400]);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var SDid=jsonData.id;\r",
+									"    pm.environment.set(\"student_id\",SDid);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"first_name\": \"testing11\",\r\n  \"middle_name\": \"A\",\r\n  \"last_name\": \"Hello\",\r\n  \"date_of_birth\": \"12/12/1994\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_base_url}}api/studentsDetails",
+							"host": [
+								"{{API_base_url}}api"
+							],
+							"path": [
+								"studentsDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch_and_Validate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code put validation \", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"response body contain \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"update  data success\");\r",
+									"});\r",
+									"pm.test(\"validate Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"pm.test(\"validating status header Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"date\");\r",
+									"});\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([205, 400]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"first_name\": \"testing11\",\r\n  \"middle_name\": \"A\",\r\n  \"last_name\": \"Hello\",\r\n  \"date_of_birth\": \"12/12/1994\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_base_url}}api/studentsDetails",
+							"host": [
+								"{{API_base_url}}api"
+							],
+							"path": [
+								"studentsDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getdata",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_base_url}}api/studentsDetails/{{student_id}}",
+							"host": [
+								"{{API_base_url}}api"
+							],
+							"path": [
+								"studentsDetails",
+								"{{student_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{API_base_url}}api/studentsDetails/{{student_id}}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\":\"{{student_id}}\",\r\n  \"first_name\": \"testing11\",\r\n  \"middle_name\": \"lgggg\",\r\n  \"last_name\": \"{{Application_username}}\",\r\n  \"date_of_birth\": \"12/12/19999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_base_url}}api/studentsDetails/{{student_id}}",
+							"host": [
+								"{{API_base_url}}api"
+							],
+							"path": [
+								"studentsDetails",
+								"{{student_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC-002_ADDupdateStudent",
+			"item": [
+				{
+					"name": "Add_New_Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"validate the response of post\", function () {\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.value).to.eql(100);\r",
+									"});\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"response body contain the string\", function () {\r",
+									"    pm.response.to.have.body(\"Add  data success\");\r",
+									"});\r",
+									"pm.test(\"Content-lenght in hadder\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Length\");\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Length\")).to.eql(\"43\");\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"Add  data success\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n  \"Permanent_Address\": {\r\n    \"House_Number\": \"houde 6\",\r\n    \"City\": \"bangalore\",\r\n    \"State\": \"karntaka\",\r\n    \"Country\": \"inda\",\r\n    \"PhoneNumber\": [\r\n      {\r\n        \"Std_Code\": \"111\",\r\n        \"Home\": \"02020\",\r\n        \"Mobile\": \"999944444\"\r\n      },\r\n      {\r\n        \"Std_Code\": \"123123122\",\r\n        \"Home\": \"23456789\",\r\n        \"Mobile\": \"99777700000\"\r\n      }\r\n    ]\r\n  },\r\n  \"Current_Address\": {\r\n    \"House_Number\": \"house 9\",\r\n    \"City\": \"delhi\",\r\n    \"State\": \"delhi\",\r\n    \"Country\": \"india\",\r\n    \"PhoneNumber\": [\r\n      {\r\n        \"Std_Code\": \"020\",\r\n        \"Home\": \"54-32-10\",\r\n        \"Mobile\": \"23456789\"\r\n      },\r\n      {\r\n        \"Std_Code\": \"010\",\r\n        \"Home\": \"76-54-32\",\r\n        \"Mobile\": \"000001111\"\r\n      }\r\n    ]\r\n  },\r\n  \"stId\": \" 1138646\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/addresses",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code put validation \", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"response body contain \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"update  data success\");\r",
+									"});\r",
+									"pm.test(\"validate Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"pm.test(\"Content-Type is present server\", function () {\r",
+									"    pm.response.to.have.header(\"Server\");\r",
+									"});\r",
+									"pm.test(\"SERVER is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Server\")).to.eql(\"Microsoft-IIS/8.5\");\r",
+									"});\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1138520,\r\n  \"first_name\": \"testing11\",\r\n  \"middle_name\": \"lgggg\",\r\n  \"last_name\": \"Hello\",\r\n  \"date_of_birth\": \"12/12/1999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_base_url}}api/studentsDetails/1138520",
+							"host": [
+								"{{API_base_url}}api"
+							],
+							"path": [
+								"studentsDetails",
+								"1138520"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ValidateData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"validate the response of post\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-lenght in hadder\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Length\");\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Length\")).to.eql(\"43\");\r",
+									"});\r",
+									"pm.test(\"response value check json\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"Add  data success\");\r",
+									"});\r",
+									"pm.test(\"Your test last  name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.last_name).to.eql(\"Hello\");\r",
+									"});\r",
+									"pm.test(\"Your permanent address\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.Address[1].Permanent_Address.State).to.eql(\"delhi\");\r",
+									"});\r",
+									"pm.test(\"Your permanent address phonenumber\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.Address[1].Permanent_Address.PhoneNumber[1].Home).to.eql(\"76-54-32\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_base_url}}api/FinalStudentDetails/ 1138646",
+							"host": [
+								"{{API_base_url}}api"
+							],
+							"path": [
+								"FinalStudentDetails",
+								" 1138646"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC-003-DeleteStudent",
+			"item": [
+				{
+					"name": "Add_new_student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"first_name\": \"testing11\",\r\n  \"middle_name\": \"A\",\r\n  \"last_name\": \"Hello\",\r\n  \"date_of_birth\": \"12/12/1994\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_base_url}}api/studentsDetails/1138522",
+							"host": [
+								"{{API_base_url}}api"
+							],
+							"path": [
+								"studentsDetails",
+								"1138522"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del_student",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_base_url}}api/studentsDetails/1138520",
+							"host": [
+								"{{API_base_url}}api"
+							],
+							"path": [
+								"studentsDetails",
+								"1138520"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative-Test",
+			"item": [
+				{
+					"name": "ADDStudent",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "idstudent",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"validate Your last name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.exp ect(jsonData.data.last_name).to.eql(\"Hello\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails/1138520",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"1138520"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "studentdetail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails/1138520",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"1138520"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://thetestingworldapi.com/api/studentsDetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post_student2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code put validation \", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"response body contain \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"update  data success\");\r",
+							"});\r",
+							"pm.test(\"validate Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"pm.test(\"validating status header Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"date\");\r",
+							"});\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([205, 400]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"first_name\": \"testing11\",\r\n  \"middle_name\": \"A\",\r\n  \"last_name\": \"Hello\",\r\n  \"date_of_birth\": \"12/12/1994\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post_student1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"first_name\": \"testing11\",\r\n  \"middle_name\": \"A\",\r\n  \"last_name\": \"Hello\",\r\n  \"date_of_birth\": \"12/12/1994\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT_Student",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1138521,\r\n  \"first_name\": \"testing11\",\r\n  \"middle_name\": \"lgggg\",\r\n  \"last_name\": \"Hello\",\r\n  \"date_of_birth\": \"12/12/1999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails/1138521",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"1138521"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Del_student",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://thetestingworldapi.com/api/studentsDetails/1138521",
+					"protocol": "http",
+					"host": [
+						"thetestingworldapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"1138521"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
